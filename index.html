@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Sitio profesional personal — servicios, trabajos y contacto.">
-  <title>Aluminios Olguin</title>
+  <title>Aluminios Viña</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
 <body>
   <header class="site-header">
     <nav class="nav container">
-      <a class="logo" href="#inicio">ALUMINIOS <span>OLGUIN</span></a>
+      <a class="logo" href="#inicio">ALUMINIOS <span>VIÑA</span></a>
       <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
       <div class="nav-links">
         <a href="#inicio">Inicio</a>
@@ -29,9 +29,7 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <h1><span>Carpintería</span> en aluminios</h1>
-          <p class="hero-text">
-            PRESENTACION TRABAJO Y POR QUE CONTACTAR
-          </p>
+          <p class="hero-text"></p>
           <div class="hero-actions">
             <a href="#trabajos" class="btn btn-primary">Mis trabajos</a>
             <a href="#contacto" class="btn btn-secondary">Contactarme</a>
@@ -163,14 +161,27 @@
 
   <footer>
     <div class="container footer-inner">
-      <p>© 2026 Brandon Aranguiz. Todos los derechos reservados.</p> 
+      <p>© 2026 Julio Olguin. Todos los derechos reservados.</p> 
       <a href="#inicio">Volver arriba ↑</a>
     </div>
   </footer>
 
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <img id="modal-img" src="" alt="">
+      <h3 id="modal-title"></h3>
+      <p id="modal-desc"></p>
+    </div>
+  </div>
+  
   <script>
     const toggle = document.querySelector('.menu-toggle');
     const links = document.querySelector('.nav-links');
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
 
     toggle.addEventListener('click', () => {
       const open = links.classList.toggle('open');
@@ -183,6 +194,18 @@
         toggle.setAttribute('aria-expanded', 'false');
       });
     });
+
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        modalImg.src = card.querySelector('img').src;
+        modalTitle.innerText = card.querySelector('h3').innerText;
+        modalDesc.innerText = card.querySelector('p').innerText; 
+        modal.classList.add('active');
+      });
+    });
+
+    document.querySelector('.close-modal').addEventListener('click', () => modal.classList.remove('active'));
+    window.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('active'); });
   </script>
 </body>
 </html>
